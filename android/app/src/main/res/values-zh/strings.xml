@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">音频同享</string>
+    <string name="title">音频同享</string>
+    <string name="connected">已连接</string>
+    <string name="unconnected">未连接</string>
+    <string name="musiche">音乐和</string>
+    <string name="musiche_closed">音乐和已关闭</string>
+    <string name="effective_after_restart">重启后生效</string>
+    <string name="audio_api_label">输出 API：</string>
+    <string name="audio_api_audiotrack">AudioTrack</string>
+    <string name="audio_api_opensl">OpenSL ES</string>
+    <string name="audio_api_aaudio">AAudio（低延迟测试）</string>
+</resources>

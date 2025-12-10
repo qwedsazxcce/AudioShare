@@ -1,0 +1,37 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+    <s:String x:Key="title">Audio Share</s:String>
+    <s:String x:Key="startup">Startup</s:String>
+    <s:String x:Key="exit">Exit</s:String>
+    <s:String x:Key="connecte">Connecte</s:String>
+    <s:String x:Key="reconnecte">Reconnecte</s:String>
+    <s:String x:Key="disconnecte">Disconnecte</s:String>
+    <s:String x:Key="connected">Connected</s:String>
+    <s:String x:Key="unconnected">Not Connected</s:String>
+    <s:String x:Key="disconnected">disconnected</s:String>
+    <s:String x:Key="audioDeviceSelection">Please select an audio device: </s:String>
+    <s:String x:Key="refresh">Refresh</s:String>
+    <s:String x:Key="audioPlaybackDevice">Audio playback device: </s:String>
+    <s:String x:Key="volume">Volume: </s:String>
+    <s:String x:Key="followSystem">Follow system</s:String>
+    <s:String x:Key="apkExistsTips">download apk to the current directory</s:String>
+    <s:String x:Key="apkMisMatch">App not installed or version mismatch, please manually install</s:String>
+    <s:String x:Key="adbMisMatch">ADB does not exist, please download to the current directory</s:String>
+    <s:String x:Key="or">or</s:String>
+    <s:String x:Key="remove">Remove</s:String>
+    <s:String x:Key="add">add</s:String>
+    <s:String x:Key="ipParseError">IP address resolution error</s:String>
+    <s:String x:Key="dataCompression">Data Compression</s:String>
+    <s:String x:Key="windowAcrylic">Transparent</s:String>
+    <s:String x:Key="effectiveAfterRestart">Effective after restart</s:String>
+    <s:String x:Key="channelStereo">Stereo</s:String>
+    <s:String x:Key="channelLeft">Left Channel</s:String>
+    <s:String x:Key="channelRight">Right Channel</s:String>
+    <s:String x:Key="channelMono">Mono</s:String>
+    <s:String x:Key="channel21">2.1 Surround</s:String>
+    <s:String x:Key="channel40">4.0 Surround</s:String>
+    <s:String x:Key="channel51">5.1 Surround</s:String>
+    <s:String x:Key="channel71">7.1 Surround</s:String>
+    <s:String x:Key="channelDisabled">Disabled</s:String>
+</ResourceDictionary>

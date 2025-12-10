@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Audio Share</string>
+    <string name="title">Audio Share</string>
+    <string name="connected">Connected</string>
+    <string name="unconnected">NotConnected</string>
+    <string name="musiche">Musiche</string>
+    <string name="musiche_closed">Musiche closed</string>
+    <string name="effective_after_restart">Effective after restart</string>
+    <string name="audio_api_label">Output API:</string>
+    <string name="audio_api_audiotrack">AudioTrack</string>
+    <string name="audio_api_opensl">OpenSL ES</string>
+    <string name="audio_api_aaudio">AAudio (beta)</string>
+</resources>
