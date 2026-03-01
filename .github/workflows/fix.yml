@@ -1,0 +1,73 @@
+name: Deploy static content to Pages
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup Pages
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Build
+        run: |
+          powershell
+          cd musiche/web
+          yarn
+          yarn build
+          cd ..\..
+          copy musiche\web\dist android\app\src\main\assets -Recurse
+          cd windows
+          echo "<Weavers><Costura/></Weavers>" > FodyWeavers.xml
+          msbuild AudioShare.sln -t:"Restore;Build" /p:Configuration=Release /p:Platform="Any CPU"
+          msbuild AudioShare.sln -t:"Restore;Build;Publish" /p:Configuration=Release /p:Platform="Any CPU" /p:PublishProfile="Properties\PublishProfiles\net6.0.pubxml" /p:TargetFramework=net6.0-windows10.0.17763.0
+          cd ../android
+          .\gradlew.bat build
+          cd ..
+          copy windows\bin\Release\net462\AudioShare.exe AudioShare.exe
+          copy android\app\build\outputs\apk\release\app-release.apk AudioShare.apk
+          copy windows\bin\Publish\net6.0-windows\AudioShare.exe AudioShare.net6.exe
+          $prevErrorActionPreference = $ErrorActionPreference
+          $ErrorActionPreference = "SilentlyContinue"
+          Invoke-WebRequest -Uri "https://dl.google.com/android/repository/platform-tools-latest-windows.zip" -OutFile platform-tools.zip
+          Expand-Archive -Path .\platform-tools.zip -DestinationPath .
+          copy .\platform-tools\adb.exe adb.exe
+          copy .\platform-tools\AdbWinApi.dll AdbWinApi.dll
+          copy .\platform-tools\AdbWinUsbApi.dll AdbWinUsbApi.dll
+          $ErrorActionPreference = $prevErrorActionPreference
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          fail_on_unmatched_files: false
+          files: |
+            AudioShare.apk
+            AudioShare.exe
+            AudioShare.net6.exe
+            adb.exe
+            AdbWinApi.dll
+            AdbWinUsbApi.dll
